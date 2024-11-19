@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset='utf-8'>
@@ -6,39 +5,34 @@
     <title> Estações em PHP! </title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
 </head>
 <body>
     <h1> Verificação de estação do ano em PHP </h1>
-    <h1> Você pode tentar dois métodos </h1>
-    <h1> Um automático e um manual </h1>
-    <form method="GET" action="/estacoesPHP/index.php">
+    <form method="GET" action="/estacoesPHP">
         <legend> Manual </legend>
-        <label for="automatic" onclick=""> Automatico: </label><br>
-        <p> Se optar pelo metodo automático </p>
-        <p> Clique aqui </p><br>
-        <input type="button" name="automatic"> Automático </input><br>
-        <br><br><br>
+        <br>
         <p> Para utilizar o metodo manual </p>
         <p> Utilize este campo </p>              
         <p> Insira a data </p>
-        <input type="number" name="day"></input>
-        <input type="number" name="month"></input>
-        <input type="number" name="year"></input>
+        <input type="number" name="day" placeholder="Dia"></input>
+        <input type="number" name="month" placeholder="Mês"></input>
         <br>
-        <input type="submit" value="Check">
+        <br>
+        <input type="submit" value="submit">
+        <br>
     </form>
 
     <?php
 
     // Lógica do código: O PHP fara uma verificação em cima do mês e do dia, e então retornará o valor de SEASON (da estação do ano) em uma variavel, a qual será escrita em um swtich.
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            if (isset($_GET['day']) and isset($_GET['month']) and isset($_GET['year'])) {
+            if (isset($_GET['day']) and isset($_GET['month'])) {
                 //Variaveis
                 $day = $_GET['day'];
                 $month = $_GET['month'];
-                $year = $_GET['year'];
                 $season = null;
+
+            
 
                 function checkSeason() {
                     if ($GLOBALS['day'] > 31 or $GLOBALS['month'] > 12 or $GLOBALS['day'] <= 0 or $GLOBALS['month'] <= 0) {
@@ -62,6 +56,9 @@
                     }
                 } // Aqui acaba a função checkSeason()
 
+            function writeResult() {
+                echo "<h1> A estação atual é" .checkSeason(). "</h1>";
+            }
 
 
             }
@@ -79,7 +76,6 @@ elseif ($GLOBALS['day'] > 21 and $GLOBALS['month'] > 6 or $GLOBALS['day'] < 23 a
 else {
     return $GLOBALS['season'] = "primavera";
 }*/
-                 //switch
     ?>
 </body>
 </html>
